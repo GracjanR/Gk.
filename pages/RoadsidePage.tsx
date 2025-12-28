@@ -8,7 +8,7 @@ const RoadsidePage: React.FC = () => {
       <section className="relative h-[60vh] flex items-center overflow-hidden border-b-4 border-red-600">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1620050861184-70b05b3806a5?q=80&w=1920" 
+            src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=1920" 
             className="w-full h-full object-cover grayscale brightness-[0.2]" 
             alt="Laweta G&K" 
           />
@@ -53,6 +53,28 @@ const RoadsidePage: React.FC = () => {
           </a>
         </div>
 
+        {/* Visual Tow Truck Section */}
+        <div className="mt-32 rounded-[3rem] overflow-hidden border border-zinc-800 relative group aspect-video md:aspect-[21/9]">
+          <img 
+            src="https://images.unsplash.com/photo-1620050861184-70b05b3806a5?q=80&w=1920" 
+            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
+            alt="Profesjonalna Autolaweta G&K" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent flex items-center p-12">
+            <div className="max-w-lg">
+              <h3 className="text-white font-black text-3xl md:text-5xl uppercase tracking-tighter leading-none mb-6 italic">
+                PROFESJONALNY <br /> <span className="text-red-600">SPRZĘT.</span>
+              </h3>
+              <p className="text-zinc-400 text-xs md:text-sm font-bold uppercase tracking-widest leading-relaxed">
+                Nasza flota to nowoczesne pojazdy specjalistyczne (szare VW Craftery) wyposażone w wciągarki o dużym uciągu, umożliwiające bezpieczny transport Twojego mienia.
+              </p>
+            </div>
+          </div>
+          <div className="absolute bottom-10 right-10">
+            <span className="text-red-600 font-black text-8xl italic opacity-20">GK</span>
+          </div>
+        </div>
+
         {/* Services List */}
         <div className="mt-32 grid lg:grid-cols-3 gap-12">
           <div className="space-y-6">
@@ -73,13 +95,13 @@ const RoadsidePage: React.FC = () => {
             <div className="grid sm:grid-cols-2 gap-10">
               <div className="space-y-3">
                 <div className="text-red-600 font-black text-3xl italic">01.</div>
-                <h4 className="text-white font-black text-sm uppercase">Nowoczesna Flota</h4>
-                <p className="text-zinc-500 text-xs leading-relaxed uppercase font-bold">Używamy profesjonalnych autolawet o dużym uciągu, regularnie serwisowanych i gotowych do trasy.</p>
+                <h4 className="text-white font-black text-sm uppercase">Gotowość operacyjna</h4>
+                <p className="text-zinc-500 text-xs leading-relaxed uppercase font-bold">Nasze lawety są regularnie serwisowane i zawsze zatankowane, co pozwala nam na start w mniej niż 5 minut od zgłoszenia.</p>
               </div>
               <div className="space-y-3">
                 <div className="text-red-600 font-black text-3xl italic">02.</div>
                 <h4 className="text-white font-black text-sm uppercase">Ubezpieczenie OCP</h4>
-                <p className="text-zinc-500 text-xs leading-relaxed uppercase font-bold">Twoje auto jest w pełni ubezpieczone na czas transportu. Pełne bezpieczeństwo i profesjonalizm.</p>
+                <p className="text-zinc-500 text-xs leading-relaxed uppercase font-bold">Twoje auto jest w pełni ubezpieczone na czas transportu. Pełne bezpieczeństwo i profesjonalizm na każdym etapie.</p>
               </div>
             </div>
           </div>

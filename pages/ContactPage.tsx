@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ContactPage: React.FC = () => {
   const [formState, setFormState] = useState({
@@ -8,15 +9,40 @@ const ContactPage: React.FC = () => {
     phone: '',
     message: ''
   });
+  const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Symulacja wysyłania
-    console.log('Form submitted:', formState);
-    setIsSent(true);
-    setTimeout(() => setIsSent(false), 5000);
-    setFormState({ name: '', email: '', phone: '', message: '' });
+    setIsSending(true);
+    setError(null);
+
+    try {
+      const response = await fetch("https://formspree.io/f/rapitagracjan@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          ...formState,
+          _subject: `Nowa wiadomość od ${formState.name} - G&K Fleet`,
+        }),
+      });
+
+      if (response.ok) {
+        setIsSent(true);
+        setFormState({ name: '', email: '', phone: '', message: '' });
+        setTimeout(() => setIsSent(false), 5000);
+      } else {
+        throw new Error("Wystąpił błąd podczas wysyłania. Spróbuj ponownie później.");
+      }
+    } catch (err: any) {
+      setError(err.message || "Nie udało się wysłać wiadomości.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -87,7 +113,7 @@ const ContactPage: React.FC = () => {
             <div className="p-10 bg-yellow-400 rounded-[3rem]">
               <h3 className="text-black font-black text-2xl uppercase tracking-tighter mb-2">Pomoc drogowa 24/7</h3>
               <p className="text-black/70 text-sm font-bold uppercase tracking-widest mb-6">Jesteśmy do Twojej dyspozycji o każdej porze dnia i nocy.</p>
-              <a href="tel:+48881218462" className="inline-block bg-black text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform">Zadzwoń teraz</a>
+              <Link to="/pomoc-drogowa" className="inline-block bg-black text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform">Zadzwoń teraz</Link>
             </div>
           </div>
 
@@ -102,8 +128,9 @@ const ContactPage: React.FC = () => {
                   type="text" 
                   value={formState.name}
                   onChange={(e) => setFormState({...formState, name: e.target.value})}
-                  className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 text-white text-sm focus:border-yellow-400 focus:outline-none transition-all" 
-                  placeholder="Jan Kowalski" 
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 text-white text-sm focus:border-yellow-400 focus:outline-none transition-all disabled:opacity-50" 
+                  placeholder="Jan Kowalski"
+                  disabled={isSending}
                 />
               </div>
               <div className="grid md:grid-cols-2 gap-6">
@@ -114,8 +141,9 @@ const ContactPage: React.FC = () => {
                     type="email" 
                     value={formState.email}
                     onChange={(e) => setFormState({...formState, email: e.target.value})}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 text-white text-sm focus:border-yellow-400 focus:outline-none transition-all" 
-                    placeholder="kontakt@twojmail.pl" 
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 text-white text-sm focus:border-yellow-400 focus:outline-none transition-all disabled:opacity-50" 
+                    placeholder="kontakt@twojmail.pl"
+                    disabled={isSending}
                   />
                 </div>
                 <div className="space-y-2">
@@ -125,8 +153,9 @@ const ContactPage: React.FC = () => {
                     type="tel" 
                     value={formState.phone}
                     onChange={(e) => setFormState({...formState, phone: e.target.value})}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 text-white text-sm focus:border-yellow-400 focus:outline-none transition-all" 
-                    placeholder="+48 000 000 000" 
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 text-white text-sm focus:border-yellow-400 focus:outline-none transition-all disabled:opacity-50" 
+                    placeholder="+48 000 000 000"
+                    disabled={isSending}
                   />
                 </div>
               </div>
@@ -136,8 +165,9 @@ const ContactPage: React.FC = () => {
                   required
                   value={formState.message}
                   onChange={(e) => setFormState({...formState, message: e.target.value})}
-                  className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 text-white text-sm focus:border-yellow-400 focus:outline-none h-40 resize-none transition-all" 
-                  placeholder="W czym możemy pomóc?" 
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 text-white text-sm focus:border-yellow-400 focus:outline-none h-40 resize-none transition-all disabled:opacity-50" 
+                  placeholder="W czym możemy pomóc?"
+                  disabled={isSending}
                 />
               </div>
 
@@ -147,11 +177,18 @@ const ContactPage: React.FC = () => {
                 </div>
               )}
 
+              {error && (
+                <div className="bg-red-500/10 border border-red-500/50 p-6 rounded-2xl text-center">
+                  <p className="text-red-500 font-black uppercase text-xs tracking-widest">{error}</p>
+                </div>
+              )}
+
               <button 
                 type="submit" 
-                className="w-full bg-yellow-400 text-black font-black py-6 rounded-2xl hover:bg-white transition-all duration-500 uppercase text-xs tracking-[0.2em] shadow-xl shadow-yellow-400/10"
+                disabled={isSending}
+                className="w-full bg-yellow-400 text-black font-black py-6 rounded-2xl hover:bg-white transition-all duration-500 uppercase text-xs tracking-[0.2em] shadow-xl shadow-yellow-400/10 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed"
               >
-                Wyślij zapytanie
+                {isSending ? "Wysyłanie..." : "Wyślij zapytanie"}
               </button>
             </form>
           </div>

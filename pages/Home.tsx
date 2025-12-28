@@ -31,10 +31,10 @@ const Home: React.FC = () => {
               Jesteśmy firmą, która redefiniuje standardy mobilności i wsparcia drogowego. Od luksusowych aut sportowych, przez kompleksową flotę Bolt, aż po niezawodną pomoc drogową 24/7 – G&K to Twój sprawdzony partner w każdej trasie.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="#uslugi-gk" className="bg-yellow-400 text-black px-12 py-5 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-white transition-all">
+              <a href="#uslugi-gk" className="bg-yellow-400 text-black px-12 py-5 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-white transition-all text-center">
                 Przejrzyj kategorie
               </a>
-              <Link to="/pomoc-drogowa" className="border border-red-900/50 text-white px-12 py-5 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-red-900/20 transition-all flex items-center gap-2">
+              <Link to="/pomoc-drogowa" className="border border-red-900/50 text-white px-12 py-5 rounded-sm font-black text-xs uppercase tracking-widest hover:bg-red-900/20 transition-all flex items-center gap-2 text-center">
                 <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
                 Pomoc drogowa 24h
               </Link>
@@ -59,31 +59,36 @@ const Home: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full border-t border-zinc-900">
-          {CATEGORIES.map((cat, idx) => (
-            <Link 
-              key={cat.id} 
-              to={cat.id === 'roadside' ? '/pomoc-drogowa' : `/kategoria/${cat.id}`}
-              className="group relative h-[500px] border-r border-b border-zinc-900 overflow-hidden transition-all duration-700"
-            >
-              <img 
-                src={cat.icon} 
-                alt={cat.title} 
-                className="absolute inset-0 w-full h-full object-cover grayscale opacity-30 group-hover:opacity-60 group-hover:scale-110 transition-all duration-1000"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-              
-              <div className="absolute inset-0 p-10 flex flex-col justify-between">
-                <span className="text-zinc-800 text-6xl font-black group-hover:text-yellow-400/20 transition-colors">0{idx + 1}</span>
-                <div>
-                  <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-2 group-hover:text-yellow-400 transition-colors">{cat.title}</h3>
-                  <p className="text-zinc-500 text-xs font-bold leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                    {cat.description}
-                  </p>
-                  <div className="w-8 h-1 bg-yellow-400 group-hover:w-full transition-all duration-500"></div>
+          {CATEGORIES.map((cat, idx) => {
+            const isRoadside = cat.id === 'roadside';
+            return (
+              <Link 
+                key={cat.id} 
+                to={isRoadside ? '/pomoc-drogowa' : `/kategoria/${cat.id}`}
+                className={`group relative h-[500px] border-r border-b border-zinc-900 overflow-hidden transition-all duration-700 ${isRoadside ? 'hover:border-red-600/30' : 'hover:border-yellow-400/30'}`}
+              >
+                <img 
+                  src={cat.icon} 
+                  alt={cat.title} 
+                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-30 group-hover:opacity-60 group-hover:scale-110 transition-all duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                
+                <div className="absolute inset-0 p-10 flex flex-col justify-between">
+                  <span className={`text-zinc-800 text-6xl font-black transition-colors ${isRoadside ? 'group-hover:text-red-600/20' : 'group-hover:text-yellow-400/20'}`}>0{idx + 1}</span>
+                  <div>
+                    <h3 className={`text-2xl font-black text-white uppercase tracking-tighter mb-2 transition-colors ${isRoadside ? 'group-hover:text-red-600' : 'group-hover:text-yellow-400'}`}>
+                      {cat.title}
+                    </h3>
+                    <p className="text-zinc-500 text-xs font-bold leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                      {cat.description}
+                    </p>
+                    <div className={`w-8 h-1 transition-all duration-500 group-hover:w-full ${isRoadside ? 'bg-red-600' : 'bg-yellow-400'}`}></div>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -100,20 +105,20 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
             <div className="text-center lg:text-left">
-              <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase mb-4 italic">
+              <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase mb-4 italic text-nowrap">
                 AWARIA? KOLIZJA? <br /> <span className="text-black">ZADZWOŃ TERAZ.</span>
               </h2>
               <p className="text-white/80 font-bold uppercase tracking-widest text-sm">Laweta dostępna natychmiast: Toruń • Bydgoszcz • Cała PL</p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-              <a href="tel:+48692913640" className="flex-1 bg-black text-white px-8 py-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform shadow-2xl">
-                <span className="text-[10px] font-black opacity-60 uppercase mb-1">Kacper Wochna</span>
-                <span className="text-xl font-black">+48 692 913 640</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full lg:w-auto min-w-[320px] md:min-w-[600px]">
+              <a href="tel:+48692913640" className="bg-black text-white p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-[1.02] transition-transform shadow-2xl border border-black hover:border-white/20">
+                <span className="text-[10px] font-black opacity-60 uppercase mb-1 tracking-[0.2em]">Kacper Wochna</span>
+                <span className="text-xl md:text-2xl font-black tracking-tighter text-nowrap">+48 692 913 640</span>
               </a>
-              <a href="tel:+48881218462" className="flex-1 bg-white text-red-600 px-8 py-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform shadow-2xl">
-                <span className="text-[10px] font-black opacity-60 uppercase mb-1">Gracjan Rapita</span>
-                <span className="text-xl font-black">+48 881 218 462</span>
+              <a href="tel:+48881218462" className="bg-white text-red-600 p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-[1.02] transition-transform shadow-2xl border border-white hover:border-red-500">
+                <span className="text-[10px] font-black opacity-60 uppercase mb-1 tracking-[0.2em]">Gracjan Rapita</span>
+                <span className="text-xl md:text-2xl font-black tracking-tighter text-nowrap">+48 881 218 462</span>
               </a>
             </div>
           </div>

@@ -18,7 +18,7 @@ export const CATEGORIES: Category[] = [
     id: 'roadside', 
     title: 'Pomoc Drogowa 24h', 
     description: 'Wsparcie techniczne i holowanie o każdej porze. Profesjonalna laweta w gotowości.', 
-    icon: 'https://images.unsplash.com/photo-1620050861184-70b05b3806a5?q=80&w=1200' 
+    icon: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=1200' 
   },
   { 
     id: 'buses', 
@@ -30,19 +30,19 @@ export const CATEGORIES: Category[] = [
     id: 'trailers', 
     title: 'Przyczepy', 
     description: 'Profesjonalne lawety i naczepy transportowe do ciężkich zadań.', 
-    icon: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200' 
+    icon: 'https://images.unsplash.com/photo-1532454170842-834f37803e64?q=80&w=1200' 
   },
   { 
     id: 'sports', 
     title: 'Auta Sportowe', 
-    description: 'Moc, która definiuje charakter.', 
+    description: 'Moc, która definiuje character.', 
     icon: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200' 
   },
   { 
     id: 'wedding', 
     title: 'Auta do Ślubu', 
     description: 'Elegancja godna najważniejszych chwil. Legendarny Mustang dowiezie Was do ołtarza.', 
-    icon: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1200' 
+    icon: 'https://images.unsplash.com/photo-1584345604440-8350bb97925c?q=80&w=1200' 
   },
   { 
     id: 'bolt', 
@@ -69,10 +69,10 @@ export const INITIAL_VEHICLES: Vehicle[] = [
     id: '2',
     categoryId: 'wedding',
     name: 'Ford Mustang GT Wedding',
-    description: 'Legendarny Mustang gotowy, by dowieźć Cię do ołtarza w wielkim stylu.',
+    description: 'Legendarny Mustang gotowy, by dowieźć Cię do ołtarza w wielkim stylu. Dostępny z dekoracjami i kierowcą.',
     pricePerDay: 1500,
-    imageUrl: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800',
-    features: ['Dekoracje ślubne', 'Kierowca w cenie'],
+    imageUrl: 'https://images.unsplash.com/photo-1584345604440-8350bb97925c?q=80&w=800',
+    features: ['Dekoracje ślubne', 'Kierowca w cenie', 'V8 Sound'],
     power: '450 KM',
     seats: 4,
     transmission: 'Automatyczna'
@@ -92,12 +92,12 @@ export const INITIAL_VEHICLES: Vehicle[] = [
   {
     id: '4',
     categoryId: 'roadside',
-    name: 'Auto Laweta Mercedes-Benz',
-    description: 'Profesjonalny sprzęt do holowania aut osobowych i dostawczych.',
+    name: 'Auto Laweta Volkswagen Crafter',
+    description: 'Profesjonalna autolaweta do holowania aut osobowych i dostawczych.',
     pricePerDay: 300,
     imageUrl: 'https://images.unsplash.com/photo-1620050861184-70b05b3806a5?q=80&w=800',
     features: ['Wciągarka', 'Pomoc 24/7'],
-    power: '190 KM',
+    power: '177 KM',
     seats: 3,
     transmission: 'Manualna'
   }
