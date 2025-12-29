@@ -132,44 +132,63 @@ const Home: React.FC = () => {
           })}
         </div>
 
-        {/* EMERGENCY BANNER */}
-        <div className="relative mt-2 overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <img 
-              src="https://images.unsplash.com/photo-1621905238294-48c4d284f9a0?q=80&w=1920" 
-              className="w-full h-full object-cover grayscale opacity-30"
-              alt="Background"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/95 to-red-950/40"></div>
+        {/* EMERGENCY BANNER - ALIGNED NUMBERS */}
+        <div className="relative mt-2 overflow-hidden bg-zinc-950">
+          <div className="absolute inset-0 z-0 opacity-20">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-900/40 via-black to-black"></div>
           </div>
 
-          <div className="relative z-10 w-full border-y border-red-600/50 shadow-[0_0_30px_rgba(220,38,38,0.15)]">
-            <div className="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col lg:flex-row items-center justify-between gap-12">
-              <div className="flex flex-col gap-6 text-center lg:text-left">
-                <div className="inline-flex items-center gap-3 bg-red-600/10 border border-red-600/30 px-5 py-2 rounded-full w-fit mx-auto lg:mx-0">
-                  <span className="w-2 h-2 bg-red-600 rounded-full animate-ping"></span>
-                  <span className="text-red-600 text-[10px] font-black uppercase tracking-[0.3em]">System Response 24H Online</span>
+          <div className="relative z-10 w-full border-y border-red-600 shadow-[0_0_100px_rgba(220,38,38,0.15)]">
+            <div className="max-w-7xl mx-auto px-4 py-24 md:py-32">
+              <div className="flex flex-col items-center text-center mb-20 space-y-6">
+                <div className="inline-flex items-center gap-4 bg-red-600/20 border border-red-600/40 px-8 py-3 rounded-full mx-auto">
+                  <span className="w-3 h-3 bg-red-600 rounded-full animate-ping"></span>
+                  <span className="text-red-600 text-xs font-black uppercase tracking-[0.5em]">Alarmowa Pomoc Drogowa 24H</span>
                 </div>
-                <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.8] italic">
-                  POMOC <br /> <span className="text-red-600">DROGOWA.</span>
+                <h2 className="text-6xl md:text-[11rem] font-black text-white tracking-tighter uppercase leading-[0.75] italic">
+                  HOLOWANIE <br /> <span className="text-red-600">NA JUŻ.</span>
                 </h2>
+                <div className="h-1 w-48 bg-red-600/30 mx-auto mt-10"></div>
+                <p className="text-zinc-500 text-sm md:text-lg font-black uppercase tracking-[0.5em] italic">
+                  TORUŃ • BYDGOSZCZ • AUTOSTRADA A1 • S5 • S10 • DK80
+                </p>
               </div>
-              <div className="grid sm:grid-cols-2 lg:flex gap-4 w-full lg:w-auto">
-                <a href="tel:+48692913640" className="group relative bg-red-600 p-8 md:p-10 rounded-[2rem] flex flex-col items-center lg:items-end justify-center transition-all hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(220,38,38,0.4)] overflow-hidden min-w-[300px]">
-                   <div className="absolute top-0 right-0 w-16 h-16 opacity-10 rotate-45 translate-x-4 -translate-y-4">
-                     <div className="w-full h-full bg-[repeating-linear-gradient(-45deg,#000,#000_10px,#fff_10px,#fff_20px)]"></div>
-                   </div>
-                   <span className="text-black/40 text-[9px] font-black uppercase tracking-widest mb-1">GŁÓWNY</span>
-                   <span className="text-white text-3xl md:text-4xl font-black tracking-tighter mb-4 group-hover:scale-110 transition-transform">+48 692 913 640</span>
-                   <div className="h-px w-12 bg-white/30 mb-4"></div>
-                   <span className="text-white text-xs font-black uppercase tracking-widest italic">KACPER WOCHNA</span>
+
+              {/* NUMBERS ALIGNED FLUSH TO CONTAINER */}
+              <div className="grid md:grid-cols-2 gap-8 w-full max-w-full">
+                <a href="tel:+48692913640" className="group relative bg-red-600 p-12 md:p-16 rounded-[4rem] flex flex-col items-center md:items-start justify-center transition-all hover:scale-[1.02] hover:shadow-[0_40px_100px_rgba(220,38,38,0.4)] overflow-hidden">
+                  <div className="absolute top-0 right-0 w-40 h-40 opacity-10 rotate-45 translate-x-10 -translate-y-10">
+                    <div className="w-full h-full bg-[repeating-linear-gradient(-45deg,#000,#000_15px,#fff_15px,#fff_30px)]"></div>
+                  </div>
+                  <div className="flex items-center gap-3 mb-6 bg-white/10 px-6 py-2 rounded-full border border-white/20">
+                    <span className="text-white text-[10px] font-black uppercase tracking-widest italic">KACPER WOCHNA</span>
+                  </div>
+                  <span className="text-black/40 text-[10px] font-black uppercase tracking-[0.4em] mb-4">DYSPOZYTORNIA GŁÓWNA</span>
+                  <div className="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tighter group-hover:scale-110 transition-transform origin-left whitespace-nowrap">
+                    +48 692 913 640
+                  </div>
+                  <div className="h-px w-24 bg-white/40 mt-10"></div>
+                  <p className="text-red-100 text-[11px] font-black uppercase tracking-widest mt-6 opacity-80 italic">Holowanie aut osobowych i dostawczych</p>
                 </a>
-                <a href="tel:+48881218462" className="group bg-zinc-900/80 backdrop-blur-md border border-zinc-800 p-8 md:p-10 rounded-[2rem] flex flex-col items-center lg:items-end justify-center transition-all hover:border-red-600/50 min-w-[260px]">
-                   <span className="text-zinc-600 text-[9px] font-black uppercase tracking-widest mb-1">Drugi numer</span>
-                   <span className="text-white text-2xl md:text-3xl font-black tracking-tighter mb-4">+48 881 218 462</span>
-                   <div className="h-px w-12 bg-zinc-800 mb-4"></div>
-                   <span className="text-zinc-500 text-[10px] font-black uppercase tracking-widest italic">GRACJAN RAPITA</span>
+
+                <a href="tel:+48881218462" className="group bg-zinc-900 border border-zinc-800 p-12 md:p-16 rounded-[4rem] flex flex-col items-center md:items-start justify-center transition-all hover:border-red-600/50 hover:bg-zinc-900/80">
+                   <div className="flex items-center gap-3 mb-6 bg-zinc-800 px-6 py-2 rounded-full border border-zinc-700">
+                    <span className="text-zinc-400 text-[10px] font-black uppercase tracking-widest italic">GRACJAN RAPITA</span>
+                  </div>
+                  <span className="text-zinc-600 text-[10px] font-black uppercase tracking-[0.4em] mb-4">LOGISTYKA I FLOTA</span>
+                  <div className="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tighter group-hover:text-red-600 transition-colors origin-left whitespace-nowrap">
+                    +48 881 218 462
+                  </div>
+                  <div className="h-px w-24 bg-zinc-800 mt-10"></div>
+                  <p className="text-zinc-500 text-[11px] font-black uppercase tracking-widest mt-6 italic">Specjalista ds. transportu i lawet</p>
                 </a>
+              </div>
+
+              <div className="mt-24 pt-16 border-t border-zinc-900 flex flex-wrap justify-between items-center gap-10 opacity-30">
+                <span className="text-zinc-600 font-black text-[10px] uppercase tracking-[0.6em] italic">AUTOLAWETA 24H</span>
+                <span className="text-zinc-600 font-black text-[10px] uppercase tracking-[0.6em] italic">AWARYJNE URUCHAMIANIE</span>
+                <span className="text-zinc-600 font-black text-[10px] uppercase tracking-[0.6em] italic">TRANSPORT MASZYN</span>
+                <span className="text-zinc-600 font-black text-[10px] uppercase tracking-[0.6em] italic">G&K FLEET ASSISTANCE</span>
               </div>
             </div>
           </div>

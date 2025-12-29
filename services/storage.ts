@@ -4,6 +4,11 @@ import { INITIAL_VEHICLES } from '../constants';
 
 const STORAGE_KEY = 'gk_vehicles';
 
+export const saveVehicles = (vehicles: Vehicle[]): Vehicle[] => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(vehicles));
+  return vehicles;
+};
+
 export const getVehicles = (): Vehicle[] => {
   const stored = localStorage.getItem(STORAGE_KEY);
   
@@ -22,39 +27,32 @@ export const getVehicles = (): Vehicle[] => {
   }
 };
 
-export const saveVehicles = (vehicles: Vehicle[]) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(vehicles));
-};
-
 export const addVehicle = (vehicle: Vehicle): Vehicle[] => {
   const current = getVehicles();
   const updated = [vehicle, ...current];
-  saveVehicles(updated);
-  return updated;
+  return saveVehicles(updated);
 };
 
 export const deleteVehicle = (id: string): Vehicle[] => {
   const current = getVehicles();
+  // Filtrowanie po ID z konwersją na string dla bezpieczeństwa
   const updated = current.filter(v => String(v.id) !== String(id));
-  saveVehicles(updated);
-  return updated;
+  return saveVehicles(updated);
 };
 
 export const clearAllVehicles = (): Vehicle[] => {
-  // Ustawiamy pustą tablicę zamiast usuwać klucz, aby getVehicles nie przywróciło danych demo
-  saveVehicles([]);
-  return [];
+  return saveVehicles([]);
 };
 
 export const resetToDefaults = (): Vehicle[] => {
   const initial = [...INITIAL_VEHICLES] as Vehicle[];
-  saveVehicles(initial);
-  return initial;
+  return saveVehicles(initial);
 };
 
 export const toggleVehicleStatus = (id: string): Vehicle[] => {
   const current = getVehicles();
-  const updated = current.map(v => String(v.id) === String(id) ? { ...v, isActive: !v.isActive } : v);
-  saveVehicles(updated);
-  return updated;
+  const updated = current.map(v => 
+    String(v.id) === String(id) ? { ...v, isActive: !v.isActive } : v
+  );
+  return saveVehicles(updated);
 };

@@ -10,18 +10,34 @@ interface VehicleCardProps {
 }
 
 const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, isAdmin, onToggle, onDelete }) => {
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (onDelete) {
+      onDelete(String(vehicle.id));
+    }
+  };
+
+  const handleToggleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (onToggle) {
+      onToggle(String(vehicle.id));
+    }
+  };
+
   return (
     <div className={`bg-zinc-900 border ${isAdmin ? (vehicle.isActive ? 'border-green-600/30' : 'border-red-600/30') : 'border-zinc-800'} rounded-[2.5rem] overflow-hidden group hover:border-yellow-400 transition-all duration-500 relative flex flex-col h-full shadow-2xl`}>
       
       {isAdmin && (
         <div className="absolute top-6 left-6 z-20">
           <div className={`px-4 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest shadow-lg ${vehicle.isActive ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}`}>
-            {vehicle.isActive ? 'Włączony (Widoczny)' : 'Wyłączony (Ukryty)'}
+            {vehicle.isActive ? 'Widoczny' : 'Ukryty'}
           </div>
         </div>
       )}
 
-      <div className="relative h-64 w-full overflow-hidden">
+      <div className="relative h-64 w-full overflow-hidden bg-black">
         <img 
           src={vehicle.imageUrl} 
           alt={vehicle.name} 
@@ -72,24 +88,18 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, isAdmin, onToggle, o
             <div className="flex flex-col gap-3">
               <button 
                 type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onToggle?.(vehicle.id);
-                }}
+                onClick={handleToggleClick}
                 className={`w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all duration-300 border ${
                   vehicle.isActive 
                   ? 'bg-zinc-800 text-white border-zinc-700 hover:bg-zinc-700' 
                   : 'bg-green-600 text-white border-green-500 hover:bg-green-500'
                 }`}
               >
-                {vehicle.isActive ? 'Ukryj na stronie' : 'Opublikuj na stronie'}
+                {vehicle.isActive ? 'Ukryj na stronie' : 'Pokaż na stronie'}
               </button>
               <button 
                 type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onDelete?.(vehicle.id);
-                }}
+                onClick={handleDeleteClick}
                 className="w-full bg-red-600/10 hover:bg-red-600 text-red-600 hover:text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all duration-300 border border-red-600/20"
               >
                 Trwale usuń z bazy
