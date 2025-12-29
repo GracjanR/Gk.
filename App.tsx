@@ -5,10 +5,10 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import CategoryPage from './pages/CategoryPage';
-import AdminPage from './pages/AdminPage';
 import ContactPage from './pages/ContactPage';
 import RoadsidePage from './pages/RoadsidePage';
 import BoltPage from './pages/BoltPage';
+import AdminPage from './pages/AdminPage';
 
 const App: React.FC = () => {
   return (
@@ -21,8 +21,8 @@ const App: React.FC = () => {
             <Route path="/kategoria/bolt" element={<BoltPage />} />
             <Route path="/kategoria/:id" element={<CategoryPage />} />
             <Route path="/kontakt" element={<ContactPage />} />
-            <Route path="/admin" element={<AdminPage />} />
             <Route path="/pomoc-drogowa" element={<RoadsidePage />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
         </main>
         <Footer />

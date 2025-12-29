@@ -1,108 +1,118 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const RoadsidePage: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="bg-black min-h-screen">
-      {/* Emergency Header */}
+      {/* Header Section */}
       <section className="relative h-[60vh] flex items-center overflow-hidden border-b-4 border-red-600">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=1920" 
+            src="https://images.unsplash.com/photo-1621905238294-48c4d284f9a0?q=80&w=1920" 
             className="w-full h-full object-cover grayscale brightness-[0.2]" 
-            alt="Laweta G&K" 
+            alt="Pomoc Drogowa G&K" 
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 w-full text-center">
-          <div className="inline-flex items-center gap-3 bg-red-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.3em] mb-8 animate-pulse">
-            <span className="w-2 h-2 bg-white rounded-full"></span>
-            Dostępni 24H / 7 Dni w tygodniu
+          <div className="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.4em] mb-8 shadow-[0_0_20px_rgba(220,38,38,0.5)]">
+            ALARMOWY 24H / 7 DNI
           </div>
-          <h1 className="text-6xl md:text-[10rem] font-black text-white tracking-tighter uppercase leading-[0.8] mb-12">
-            POMOC <br /> <span className="text-red-600 italic">DROGOWA.</span>
+          <h1 className="text-6xl md:text-[9rem] font-black text-white tracking-tighter uppercase leading-[0.8] mb-8 italic">
+            G&K <br /> <span className="text-red-600">ASSISTANCE.</span>
           </h1>
-          <p className="text-zinc-400 max-w-2xl mx-auto text-lg font-medium mb-12 uppercase tracking-widest">
-            Toruń • Bydgoszcz • Zławieś Mała • Cała Polska i Europa
-          </p>
+          <p className="text-zinc-500 font-black text-xs uppercase tracking-[0.3em]">Toruń • Bydgoszcz • Autostrada A1 • Cała Polska</p>
         </div>
       </section>
 
-      {/* Quick Contact Grid */}
-      <section className="py-24 max-w-7xl mx-auto px-4">
+      {/* Emergency Contacts */}
+      <section className="py-20 max-w-7xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 -mt-40 relative z-20">
-          <a href="tel:+48692913640" className="group bg-zinc-900 border-2 border-zinc-800 p-12 rounded-[3rem] hover:border-red-600 transition-all shadow-2xl">
-            <div className="flex justify-between items-start mb-10">
-              <span className="bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">Główny Numer</span>
-              <svg className="w-10 h-10 text-red-600 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          {/* Main Contact: Kacper */}
+          <a href="tel:+48692913640" className="group relative bg-red-600 p-12 rounded-[3rem] transition-all hover:scale-[1.03] shadow-[0_30px_60px_rgba(220,38,38,0.3)] overflow-hidden">
+            {/* Caution Stripes Decoration */}
+            <div className="absolute top-0 right-0 w-32 h-32 opacity-10 rotate-45 translate-x-12 -translate-y-12">
+              <div className="w-full h-full bg-[repeating-linear-gradient(-45deg,#000,#000_20px,#fff_20px,#fff_40px)]"></div>
             </div>
-            <h2 className="text-zinc-500 text-xs font-black uppercase tracking-widest mb-2">Kacper Wochna</h2>
-            <div className="text-4xl md:text-5xl font-black text-white tracking-tighter group-hover:text-red-600 transition-colors">+48 692 913 640</div>
-            <p className="text-zinc-600 text-sm mt-6 uppercase font-bold tracking-tighter">Zadzwoń teraz - czas dojazdu od 15 min</p>
-          </a>
 
-          <a href="tel:+48881218462" className="group bg-zinc-900 border-2 border-zinc-800 p-12 rounded-[3rem] hover:border-red-600 transition-all shadow-2xl">
-            <div className="flex justify-between items-start mb-10">
-              <span className="bg-zinc-800 text-zinc-500 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">Numer Rezerwowy</span>
-              <svg className="w-10 h-10 text-zinc-700 group-hover:text-red-600 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            </div>
-            <h2 className="text-zinc-500 text-xs font-black uppercase tracking-widest mb-2">Gracjan Rapita</h2>
-            <div className="text-4xl md:text-5xl font-black text-white tracking-tighter group-hover:text-red-600 transition-colors">+48 881 218 462</div>
-            <p className="text-zinc-600 text-sm mt-6 uppercase font-bold tracking-tighter">Obsługa zleceń planowanych i transportu maszyn</p>
-          </a>
-        </div>
-
-        {/* Visual Tow Truck Section */}
-        <div className="mt-32 rounded-[3rem] overflow-hidden border border-zinc-800 relative group aspect-video md:aspect-[21/9]">
-          <img 
-            src="https://images.unsplash.com/photo-1620050861184-70b05b3806a5?q=80&w=1920" 
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
-            alt="Profesjonalna Autolaweta G&K" 
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent flex items-center p-12">
-            <div className="max-w-lg">
-              <h3 className="text-white font-black text-3xl md:text-5xl uppercase tracking-tighter leading-none mb-6 italic">
-                PROFESJONALNY <br /> <span className="text-red-600">SPRZĘT.</span>
-              </h3>
-              <p className="text-zinc-400 text-xs md:text-sm font-bold uppercase tracking-widest leading-relaxed">
-                Nasza flota to nowoczesne pojazdy specjalistyczne (szare VW Craftery) wyposażone w wciągarki o dużym uciągu, umożliwiające bezpieczny transport Twojego mienia.
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="bg-white text-red-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest animate-pulse">GŁÓWNY DYŻURNY</span>
+                <span className="w-3 h-3 bg-white rounded-full animate-ping"></span>
+              </div>
+              <h2 className="text-white text-[11px] font-black uppercase tracking-widest opacity-80 mb-2">Kacper Wochna</h2>
+              <div className="text-4xl md:text-6xl font-black text-white tracking-tighter group-hover:scale-105 transition-transform">+48 692 913 640</div>
+              <p className="text-red-100 text-[10px] mt-8 uppercase font-bold tracking-widest leading-relaxed">
+                Najszybszy dojazd w regionie Torunia i okolic. <br /> Pełny zakres pomocy drogowej.
               </p>
             </div>
-          </div>
-          <div className="absolute bottom-10 right-10">
-            <span className="text-red-600 font-black text-8xl italic opacity-20">GK</span>
-          </div>
+          </a>
+
+          {/* Secondary Contact: Gracjan */}
+          <a href="tel:+48881218462" className="group bg-zinc-900 border-2 border-zinc-800 p-12 rounded-[3rem] hover:border-red-600/50 transition-all shadow-2xl relative">
+            <h2 className="text-zinc-500 text-[11px] font-black uppercase tracking-widest mb-2">Gracjan Rapita</h2>
+            <div className="text-4xl md:text-5xl font-black text-white tracking-tighter group-hover:text-red-600 transition-colors">+48 881 218 462</div>
+            <p className="text-zinc-600 text-[10px] mt-8 uppercase font-bold tracking-widest leading-relaxed">
+              Transport ciężki i naczep. <br /> Logistyka pojazdów zastępczych.
+            </p>
+          </a>
         </div>
 
-        {/* Services List */}
-        <div className="mt-32 grid lg:grid-cols-3 gap-12">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic">Nasze Usługi</h3>
-            <div className="h-1 w-12 bg-red-600"></div>
-            <ul className="space-y-4">
-              {['Holowanie aut osobowych i busów', 'Wyciąganie z rowów / błota', 'Transport maszyn budowlanych', 'Awaryjne odpalanie (booster 12/24V)', 'Wymiana koła na drodze', 'Dowóz paliwa'].map((item, idx) => (
-                <li key={idx} className="flex items-center text-zinc-400 text-sm font-bold uppercase tracking-widest">
-                  <span className="w-2 h-2 bg-red-600 mr-4"></span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div className="lg:col-span-2 bg-zinc-950 p-12 rounded-[3rem] border border-zinc-900">
-            <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-8">Dlaczego G&K?</h3>
-            <div className="grid sm:grid-cols-2 gap-10">
-              <div className="space-y-3">
-                <div className="text-red-600 font-black text-3xl italic">01.</div>
-                <h4 className="text-white font-black text-sm uppercase">Gotowość operacyjna</h4>
-                <p className="text-zinc-500 text-xs leading-relaxed uppercase font-bold">Nasze lawety są regularnie serwisowane i zawsze zatankowane, co pozwala nam na start w mniej niż 5 minut od zgłoszenia.</p>
+        {/* Info & Fleet Details */}
+        <div className="mt-32">
+          <div className="space-y-8">
+            <div className="bg-zinc-950 p-12 md:p-20 rounded-[3.5rem] border border-zinc-900 relative overflow-hidden group">
+              {/* Fleet Icon Background */}
+              <div className="absolute -bottom-10 -right-10 opacity-[0.03] rotate-[-15deg] group-hover:rotate-0 transition-transform duration-1000">
+                <svg className="w-96 h-96" fill="currentColor" viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
               </div>
-              <div className="space-y-3">
-                <div className="text-red-600 font-black text-3xl italic">02.</div>
-                <h4 className="text-white font-black text-sm uppercase">Ubezpieczenie OCP</h4>
-                <p className="text-zinc-500 text-xs leading-relaxed uppercase font-bold">Twoje auto jest w pełni ubezpieczone na czas transportu. Pełne bezpieczeństwo i profesjonalizm na każdym etapie.</p>
+
+              <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-12 italic flex items-center gap-6">
+                <span className="w-4 h-4 bg-red-600"></span>
+                Gwarancja Jakości i Zasięg
+              </h3>
+              
+              <div className="relative z-10 max-w-3xl">
+                <div className="space-y-6">
+                  <h4 className="text-red-600 font-black text-xl uppercase tracking-widest">Szybkość Działania</h4>
+                  <p className="text-zinc-400 text-sm md:text-base leading-relaxed uppercase font-black">
+                    Dzięki strategicznej lokalizacji w Złejwsi Małej, docieramy do Torunia i Bydgoszczy w czasie poniżej 20-30 minut. Obsługujemy kluczowe węzły autostrady A1 oraz drogi ekspresowe S5 i S10. Nasz zespół techniczny pozostaje w pełnej gotowości operacyjnej przez całą dobę.
+                  </p>
+                </div>
               </div>
+
+              <div className="mt-20 pt-12 border-t border-zinc-900 grid grid-cols-2 sm:grid-cols-4 gap-8">
+                 <div className="text-center">
+                    <span className="block text-white text-3xl md:text-4xl font-black tracking-tighter">24/7</span>
+                    <span className="text-zinc-600 text-[10px] font-black uppercase tracking-widest">Dostępność</span>
+                 </div>
+                 <div className="text-center">
+                    <span className="block text-white text-3xl md:text-4xl font-black tracking-tighter">OC/AC</span>
+                    <span className="text-zinc-600 text-[10px] font-black uppercase tracking-widest">Pełne Ubezpieczenie</span>
+                 </div>
+                 <div className="text-center">
+                    <span className="block text-white text-3xl md:text-4xl font-black tracking-tighter">FAKTURA</span>
+                    <span className="text-zinc-600 text-[10px] font-black uppercase tracking-widest">Rozliczenie VAT 23%</span>
+                 </div>
+                 <div className="text-center">
+                    <span className="block text-white text-3xl md:text-4xl font-black tracking-tighter">REGION</span>
+                    <span className="text-zinc-600 text-[10px] font-black uppercase tracking-widest">Cała Polska</span>
+                 </div>
+              </div>
+            </div>
+
+            <div className="bg-red-600/5 border border-red-600/20 p-12 rounded-[3.5rem] flex flex-col md:flex-row items-center justify-between gap-12">
+               <div className="text-center md:text-left">
+                 <p className="text-zinc-400 text-xs font-black uppercase tracking-widest mb-2">Zatrzymała Cię awaria lub kolizja?</p>
+                 <p className="text-white text-xl font-black uppercase tracking-tighter italic">Nie trać czasu, dzwoń do profesjonalistów z G&K Assistance.</p>
+               </div>
+               <a href="tel:+48692913640" className="bg-red-600 text-white px-12 py-6 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white hover:text-red-600 transition-all shadow-[0_0_30px_rgba(220,38,38,0.2)]">
+                 WEZWIJ POMOC TERAZ
+               </a>
             </div>
           </div>
         </div>

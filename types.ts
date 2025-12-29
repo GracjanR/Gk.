@@ -17,9 +17,10 @@ export interface Vehicle {
   pricePerDay: number;
   imageUrl: string;
   features: string[];
-  power?: string;       // Moc (np. 150 KM)
-  seats?: number;      // Ilość miejsc
-  transmission?: string; // Typ skrzyni
+  power?: string;       
+  seats?: number;      
+  transmission?: string; 
+  isActive: boolean; // Nowe pole do sterowania widocznością
 }
 
 export interface Category {

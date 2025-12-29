@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CATEGORIES } from '../constants';
@@ -22,10 +21,11 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2 group">
-              <span className="text-3xl font-black text-yellow-400 tracking-tighter group-hover:scale-105 transition-transform">G&K</span>
-              <div className="h-6 w-[1px] bg-zinc-700 hidden sm:block"></div>
-              <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] hidden sm:block">Rapita & Wochna</span>
+            <Link to="/" className="flex items-center space-x-4 group">
+              <span className="text-3xl font-black text-yellow-400 tracking-tighter group-hover:scale-105 transition-transform uppercase">G&K</span>
+              <div className="flex flex-col border-l border-zinc-700 pl-4 hidden sm:flex h-8 justify-center">
+                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em]">Rapita & Wochna</span>
+              </div>
             </Link>
           </div>
           
@@ -33,18 +33,37 @@ const Navbar: React.FC = () => {
             {navLinks.map((link, idx) => {
               const isActive = location.pathname === link.path;
               const isRoadside = link.path === '/pomoc-drogowa';
+              // @ts-ignore
+              const isBolt = link.id === 'bolt';
+              
+              let linkClasses = "px-3 py-2 text-[10px] uppercase tracking-widest font-black transition-all ";
+              
+              if (isActive) {
+                if (isRoadside) {
+                  linkClasses += "text-red-600 bg-red-600/10 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.2)]";
+                } else if (isBolt) {
+                  linkClasses += "text-[#32bb78] bg-[#32bb78]/10 rounded-lg shadow-[0_0_15px_rgba(50,187,120,0.2)]";
+                } else {
+                  linkClasses += "text-yellow-400";
+                }
+              } else {
+                if (isRoadside) {
+                  linkClasses += "text-red-500/80 hover:text-red-600";
+                } else if (isBolt) {
+                  linkClasses += "text-[#32bb78]/80 hover:text-[#32bb78]";
+                } else {
+                  linkClasses += "text-zinc-400 hover:text-white";
+                }
+              }
               
               return (
                 <Link 
                   key={idx}
                   to={link.path} 
-                  className={`px-3 py-2 text-[10px] uppercase tracking-widest font-black transition-all ${
-                    isActive 
-                      ? (isRoadside ? 'text-red-600 bg-red-600/10 rounded-lg shadow-[0_0_15px_rgba(220,38,38,0.2)]' : 'text-yellow-400') 
-                      : (isRoadside ? 'text-red-500/80 hover:text-red-600' : 'text-zinc-400 hover:text-white')
-                  }`}
+                  className={linkClasses}
                 >
                   {isRoadside && <span className="inline-block w-1.5 h-1.5 bg-red-600 rounded-full mr-1.5 animate-pulse"></span>}
+                  {isBolt && !isActive && <span className="inline-block w-1.5 h-1.5 bg-[#32bb78] rounded-full mr-1.5"></span>}
                   {link.name}
                 </Link>
               );
@@ -74,20 +93,39 @@ const Navbar: React.FC = () => {
             {navLinks.map((link, idx) => {
               const isActive = location.pathname === link.path;
               const isRoadside = link.path === '/pomoc-drogowa';
+              // @ts-ignore
+              const isBolt = link.id === 'bolt';
+
+              let mobileClasses = "block px-4 py-4 text-sm font-black uppercase tracking-widest border-b border-zinc-900 last:border-0 ";
+              
+              if (isActive) {
+                if (isRoadside) {
+                  mobileClasses += "text-red-600 bg-red-600/5";
+                } else if (isBolt) {
+                  mobileClasses += "text-[#32bb78] bg-[#32bb78]/5";
+                } else {
+                  mobileClasses += "text-yellow-400";
+                }
+              } else {
+                if (isRoadside) {
+                  mobileClasses += "text-red-500";
+                } else if (isBolt) {
+                  mobileClasses += "text-[#32bb78]";
+                } else {
+                  mobileClasses += "text-white";
+                }
+              }
 
               return (
                 <Link 
                   key={idx}
                   onClick={() => setIsOpen(false)} 
                   to={link.path} 
-                  className={`block px-4 py-4 text-sm font-black uppercase tracking-widest border-b border-zinc-900 last:border-0 ${
-                    isActive 
-                      ? (isRoadside ? 'text-red-600 bg-red-600/5' : 'text-yellow-400') 
-                      : (isRoadside ? 'text-red-500' : 'text-white')
-                  }`}
+                  className={mobileClasses}
                 >
                   <div className="flex items-center">
                     {isRoadside && <span className="w-2 h-2 bg-red-600 rounded-full mr-3 animate-pulse"></span>}
+                    {isBolt && <span className="w-2 h-2 bg-[#32bb78] rounded-full mr-3"></span>}
                     {link.name}
                   </div>
                 </Link>
